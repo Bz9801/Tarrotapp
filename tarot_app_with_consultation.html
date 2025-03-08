@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таро Гадание</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card-display {
+            width: 200px;
+            height: 300px;
+            margin: 20px auto;
+            background-color: white;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-draw {
+            background-color: #ff9800;
+            color: white;
+        }
+        .btn-share {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-consult {
+            background-color: #ff3333;
+            color: white;
+            margin-top: 20px;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 Добре дошли в Таро Гадание 🔮</h1>
+        <p>Изтегли карта, за да разбереш съдбата си!</p>
+        <div class="card-display" id="card">?</div>
+        <button class="btn-draw" onclick="drawCard()">Изтегли карта</button>
+        <button class="btn-share" onclick="shareResult()">Сподели резултата</button>
+        <p id="interpretation"></p>
+        
+        <a href="https://www.bojidartaroshop.com" target="_blank" class="btn-consult">🔮 Консултация с мен</a>
+    </div>
+
+    <script>
+        const tarotCards = [
+            { name: "Глупакът", meaning: "Нови възможности, невинност, свобода." },
+            { name: "Магьосникът", meaning: "Сила, креативност, овладяване на ситуации." },
+            { name: "Върховната жрица", meaning: "Интуиция, тайни, вътрешно познание." },
+            { name: "Императрицата", meaning: "Растеж, плодородие, женска енергия." },
+            { name: "Императорът", meaning: "Структура, ред, сила." },
+            { name: "Справедливостта", meaning: "Баланс, истина, карма." },
+            { name: "Колелото на съдбата", meaning: "Промени, късмет, съдба." },
+            { name: "Смъртта", meaning: "Трансформация, край и ново начало." },
+            { name: "Слънцето", meaning: "Радост, успех, позитивност." },
+            { name: "Светът", meaning: "Завършеност, изпълнение на целите." }
+        ];
+
+        function drawCard() {
+            let randomIndex = Math.floor(Math.random() * tarotCards.length);
+            let selectedCard = tarotCards[randomIndex];
+            document.getElementById("card").innerText = selectedCard.name;
+            document.getElementById("interpretation").innerText = "🔮 Значение: " + selectedCard.meaning;
+        }
+
+        function shareResult() {
+            let card = document.getElementById("card").innerText;
+            let interpretation = document.getElementById("interpretation").innerText;
+            let textToCopy = `🌟 Изтеглих картата "${card}"! ${interpretation} 🔮`;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert("Резултатът е копиран! Сподели го с приятели!");
+            });
+        }
+    </script>
+</body>
+</html>
